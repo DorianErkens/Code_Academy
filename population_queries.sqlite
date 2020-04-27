@@ -2,6 +2,8 @@ SELECT COUNT(*)
 FROM countries
 WHERE continent = 'Africa';
 
+// Count for the total numbers of countries in Africa
+
 WITH temp_db AS (
 SELECT * FROM population_years
 JOIN countries
@@ -11,6 +13,9 @@ SELECT temp_db.continent, temp_db.year, SUM(temp_db.population) AS answer_4
 FROM temp_db
 WHERE temp_db.continent = 'Oceania'
 AND temp_db.year = 2005;
+
+// Get the sum of the population of Oceania countries in 2005
+
 WITH temp_db AS (
 SELECT * FROM population_years
 JOIN countries
@@ -20,6 +25,9 @@ SELECT temp_db.continent, temp_db.year, ROUND (AVG(temp_db.population),2) AS ans
 FROM temp_db
 WHERE temp_db.continent = 'South America'
 AND temp_db.year = 2003;
+
+// Get the average population of South America countries in 2003
+
 WITH temp_db AS (
 SELECT * FROM population_years
 JOIN countries
@@ -28,6 +36,8 @@ ON population_years.country_id = countries.id
 SELECT temp_db.name,temp_db.continent, temp_db.year,MIN(temp_db.population) AS answer_6 
 FROM temp_db
 WHERE temp_db.year = 2007;
+
+// Get the country with the smallest population in the world in 2007
 
 WITH temp_db AS (
 SELECT * FROM population_years
@@ -38,9 +48,13 @@ SELECT temp_db.name,temp_db.continent,ROUND(AVG(population),2) AS answer_7
 FROM temp_db
 WHERE temp_db.name = 'Poland';
 
+// Get the average population of Poland throughout the years
+
 SELECT COUNT(*) AS answer_8 
 FROM countries
 WHERE name LIKE '%The%';
+
+// Count for the number of countries with 'The' in their name
 
 WITH temp_db AS (
 SELECT * FROM population_years
@@ -52,3 +66,6 @@ FROM temp_db
 WHERE temp_db.year=2010
 GROUP BY 1
 ORDER BY 2 DESC;
+
+// Show the rounded sum of population for each continent in 2010
+
