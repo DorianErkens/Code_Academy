@@ -1,0 +1,54 @@
+SELECT COUNT(*) 
+FROM countries
+WHERE continent = 'Africa';
+
+WITH temp_db AS (
+SELECT * FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id 
+) 
+SELECT temp_db.continent, temp_db.year, SUM(temp_db.population) AS answer_4
+FROM temp_db
+WHERE temp_db.continent = 'Oceania'
+AND temp_db.year = 2005;
+WITH temp_db AS (
+SELECT * FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id 
+) 
+SELECT temp_db.continent, temp_db.year, ROUND (AVG(temp_db.population),2) AS answer_5
+FROM temp_db
+WHERE temp_db.continent = 'South America'
+AND temp_db.year = 2003;
+WITH temp_db AS (
+SELECT * FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id 
+) 
+SELECT temp_db.name,temp_db.continent, temp_db.year,MIN(temp_db.population) AS answer_6 
+FROM temp_db
+WHERE temp_db.year = 2007;
+
+WITH temp_db AS (
+SELECT * FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id 
+) 
+SELECT temp_db.name,temp_db.continent,ROUND(AVG(population),2) AS answer_7
+FROM temp_db
+WHERE temp_db.name = 'Poland';
+
+SELECT COUNT(*) AS answer_8 
+FROM countries
+WHERE name LIKE '%The%';
+
+WITH temp_db AS (
+SELECT * FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id 
+) 
+SELECT temp_db.continent, ROUND(SUM(temp_db.population),3) AS answer_9
+FROM temp_db
+WHERE temp_db.year=2010
+GROUP BY 1
+ORDER BY 2 DESC;
